@@ -1,0 +1,46 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <main id="main-container">
+    <section id="right-container">
+ 
+      <div class="seven">
+   
+        <h1><img src="../../assets/images/logo.png" width="200px" height="60px"></h1>
+      </div>
+      <section id="topchart-section" *ngIf="spotifyPlaylistBillBoard">
+        <div class="heading-part">
+          <h3 style="color:white">{{ spotifyPlaylistBillBoard.name }}</h3>
+        </div>
+        <div id="grid" class="cards-container scroll-container">
+          <div class="popstar-cards" *ngFor="let item of spotifyPlaylistBillBoard.tracks.items">
+            <div class="pop-img" (click)="openPlayDialog(item.track)">
+              <img src="{{ item.track.album.images[0].url }}" alt="pop-img">
+            </div>
+            <h4>{{ item.track.name }}</h4>
+            <p>{{ item.track.artists[0].name }}</p>
+          </div>
+        </div>
+      </section>
+      
+     <div *ngIf="tracks; else noTrack">
+        <div *ngIf="tracks.length>5; else topHits">
+        <app-favorite-list></app-favorite-list>
+      </div>
+      
+     <ng-template #topHits>
+        <app-today-top-hits-playlist></app-today-top-hits-playlist>
+      </ng-template>
+      </div>
+
+      <ng-template #noTrack>
+        <app-today-top-hits-playlist></app-today-top-hits-playlist>
+      </ng-template>
+    </section>
+
+  </main>
+
+</body>
+<app-side-bar></app-side-bar>
+<app-footer></app-footer>

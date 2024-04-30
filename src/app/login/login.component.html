@@ -1,0 +1,82 @@
+<header>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</header>
+<div class="body">
+ 
+  <div class="main">
+    <!-- <input type="checkbox" id="chk" aria-hidden="false"> -->
+
+    <div class="row checkaction">
+      <div class="col-md-12">
+        <div class="col-md-6 loginsignup">
+          <input type="radio" name="loginsignup" id="loginradio" (click)="checkInput('login')">
+          <label for="loginradio">login</label>
+        </div>
+        <div class="col-md-6 loginsignup">
+          <input type="radio" name="loginsignup" id="signupradio" (click)="checkInput('signup')">
+          <label for="signupradio">signup</label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="signup" *ngIf="!isLogin">
+      <form #signupForm="ngForm">
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input type="text" name="firstName" placeholder="First Name" required [(ngModel)]="firstName">
+        <input type="text" name="lastName" placeholder="Last Name" required [(ngModel)]="lastName">
+        <input type="text" name="txt" placeholder="User Name" required [(ngModel)]="username" pattern="^[a-zA-Z][a-zA-Z0-9_]*$">
+        <div *ngIf="signupForm.controls['txt']?.hasError('pattern')" class="error-message">
+          <p class="error-message">Username should not start with special characters/numbers</p>
+        </div>
+        <input type="email" name="email" placeholder="Email" required [(ngModel)]="email" #emailInput="ngModel" email>
+        <div *ngIf="emailInput.invalid && emailInput.errors?.['email']; else validEmail">
+          <p class="error-message">Email is invalid.</p>
+        </div>
+        <input type="password" name="pswd-signup" placeholder="Password" required [(ngModel)]="password"
+        pattern="^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,})\S$">
+        <div *ngIf="signupForm.controls['pswd-signup']?.hasError('pattern')" class="error-message">
+            <p class="error-message">Password is invalid.</p>
+        </div>
+        <input type="number" name="phone-signup" placeholder="Phone" required [(ngModel)]="phone"
+        pattern="[789][0-9]{9}">
+        <div *ngIf="signupForm.controls['number']?.hasError('pattern')" class="error-message">
+          <p class="error-message">Phone number is invalid.</p>
+        </div>
+        <input type="date" name="dob" placeholder="Date Of Birth" required [(ngModel)]="dob">
+        <div *ngIf="signupForm.invalid && (signupForm.dirty || signupForm.touched); else removeError"
+          class="error-message">
+          <p class="error-message">Please fill out all required fields.</p>
+        </div>
+        <ng-template #removeError>
+          <div *ngIf="successMessage" class="success-message">
+            <p class="success-message">Successfully registered.</p>
+          </div>
+
+          <div *ngIf="errorMessage2" class="error-message">
+            <p class="error-message">{{errorMessage2}}</p>
+          </div>
+        </ng-template>
+        <button (click)="signUp()" [disabled]="signupForm.invalid">Sign up</button>
+      </form>
+
+    </div>
+
+    <div class="login" *ngIf="isLogin">
+      <form #loginForm="ngForm">
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="text" name="txt" placeholder="User Name" required="" [(ngModel)]="loginUsername">
+        <input type="password" name="pswd" placeholder="password" required="" [(ngModel)]="loginPassword">
+        <div *ngIf="loginForm.invalid && (loginForm.dirty || loginForm.touched); else removeErrorLogin"
+          class="error-message">
+          <p class="error-message">Please fill out all required fields.</p>
+        </div>
+        <ng-template #removeErrorLogin>
+          <div *ngIf="errorMessage" class="error-message">
+            <p class="error-message">Please enter a valid User Name and password.</p>
+          </div>
+        </ng-template>
+        <button (click)="login()" [disabled]="loginForm.invalid">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

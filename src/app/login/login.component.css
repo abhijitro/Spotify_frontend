@@ -1,0 +1,121 @@
+.body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Jost', sans-serif;
+    /* background:linear-gradient(to bottom, #2c3e50, #3498db); */
+    background-image: url("../../assets/images/kid-6538300_1280.jpg");
+}
+
+.main {
+    width: 500px;
+    height: 853px;
+    background: #1b1b1b;
+    overflow: hidden;
+    border-radius: 15px;
+    background:transparent;
+    box-shadow: 5px 20px 50px #000;
+}
+
+#chk {
+    display: none;
+}
+
+.loginsignup {
+    display: inline-flex;
+}
+
+.loginsignup label {
+    margin: 17px 100px 20px 10px;
+    font-size: 28px;
+    color: #ffffff; /* Green color for labels */
+    margin-left: 59px;
+}
+
+.checkaction {
+    display: inline-flex;
+}
+
+.signup {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+label {
+    color: #ffffff; /* Green color for labels */
+    font-size: 2.3em;
+    justify-content: center;
+    display: flex;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+input {
+    width: 70%;
+    height: 20px;
+    background: #1b1b1b; /* Black background */
+    color: #ffffff; /* Green text color */
+    justify-content: center;
+    display: flex;
+    margin: 30px auto;
+    padding: 15px;
+    border: 1px;
+    outline: none;
+    border-radius: 8px;
+    border-color: #ffffff;
+}
+
+button {
+    width: 70%;
+    height: 50px;
+    margin: 20px auto;
+    justify-content: center;
+    display: block;
+    color: #f3fbf3; /* Green text color */
+    background: #1b1b1b; /* Black background */
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 30px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #000; /* Darker black on hover */
+}
+
+.login {
+    height: 560px;
+    border-radius: 70% / 10%;
+    transition: .8s ease-in-out;
+}
+
+.login label {
+    color: #ffffff; /* Green text color */
+    transform: scale(1);
+}
+
+.error-message {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.success-message {
+    color: green;
+    text-align: center;
+    margin-top: 10px;
+}
+
+img{
+    width: 10px;
+    height: 10px;
+}

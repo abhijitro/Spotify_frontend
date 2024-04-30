@@ -1,0 +1,104 @@
+<aside>
+    <div id="most-popular-wrapper" *ngIf="spotifyPlaylist; else noTracks">
+        <div class="nine">
+            <h1>{{spotifyPlaylist.name}}<span>{{spotifyPlaylist.tracks.items.length}} Songs</span></h1>
+        </div>
+        <div class="song-list-wrapper" style="padding-top: 0;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 20px; font-weight: 400;"> # </th>
+                    <td mat-cell *matCellDef="let element; let i = index" style="font-size: 16px; font-weight: 400;"> {{element.track.index}} </td>
+                </ng-container>
+
+
+                <!-- Image Column -->
+                <ng-container matColumnDef="image">
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 20px; font-weight: 400;"> Image </th>
+                    <td mat-cell *matCellDef="let element" style="font-size: 16px;">
+                        <img class="curved-image" [src]="element.track.album.images[0].url" alt="artist-img" width="70" height="70">
+                    </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <!-- Name and Artist Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 20px; font-weight: 400;"> Title </th>
+                    <td mat-cell *matCellDef="let element" style="font-size: 16px; font-weight: 400;">
+                        {{ element.track.name }} - {{ element.track.artists[0].name }}
+                    </td>
+                </ng-container>
+
+
+                <!-- Artist Column -->
+                <ng-container matColumnDef="artist">
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 20px; font-weight: 400;"> Album </th>
+                    <td mat-cell *matCellDef="let element" style="font-size: 16px; font-weight: 400;"> {{element.track.album.name}} </td>
+                </ng-container>
+
+                <!-- Duration Column -->
+                <ng-container matColumnDef="duration">
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 20px; font-weight: 400;"> Duration </th>
+                    <td mat-cell *matCellDef="let element" style="font-size: 16px; font-weight: 400;"> {{element.track.duration_ms | millisecondsToMinutes}} </td>
+                </ng-container>
+
+
+                <!-- Play Song on Spotify -->
+                <ng-container matColumnDef="play">
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 20px; font-weight: 400;"> Play </th>
+                    <td mat-cell *matCellDef="let element" style="font-size: 16px; font-weight: 400;">
+                        <div *ngIf="element.track.preview_url; else redirectUrl">
+                            <i class="fas fa-play" style="transition: transform 1s ease; cursor: pointer;"
+                                (click)="openPlayDialog(element.track)"></i>
+                        </div>
+                        <ng-template #redirectUrl>
+                            <i class="fa fa-external-link" style="transition: transform 1s ease; cursor: pointer;"
+                                (click)="playTrack(element)"></i>
+                        </ng-template>
+                    </td>
+                </ng-container>
+
+                <!-- Action Column -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 20px; font-weight: 400;"> Action </th>
+                    <td mat-cell *matCellDef="let element" style="font-size: 16px; font-weight: 400;">
+                        <i (click)="toggleHeartState(element.track.id)" class="fas fa-heart red"
+                            [@heartAnimation]="getHeartState(element.track.id)" style="cursor: pointer;"></i>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <!-- ... (previous code) ... -->
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20, 100]" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </div>
+</aside>
+<ng-template #noTracks>
+    <div id="container-empty">
+        
+        <div id="error-box">
+            <div class="dot"></div>
+            <div class="dot two"></div>
+            <div class="face2">
+                <div class="eye"></div>
+                <div class="eye right"></div>
+                <div class="mouth sad"></div>
+            </div>
+            <div class="shadow move"></div>
+            <div class="message">
+                <h1 class="alert">Empty!</h1>
+                <p>Something went wrong...</p>
+            </div>
+            <button class="button-box" [routerLink]="['/home']">
+                <h1 class="red">home</h1>
+            </button>
+        </div>
+    </div>
+</ng-template>
+<app-side-bar></app-side-bar>
+<app-footer></app-footer>

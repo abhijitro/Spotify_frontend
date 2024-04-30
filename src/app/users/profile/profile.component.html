@@ -1,0 +1,63 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<aside>
+  <div id="most-popular-wrapper" *ngIf="userProfile">
+      <div class="nine">
+      </div>  
+        <div class="row container d-flex justify-content-center">
+          <div class="col-xl-6 col-md-12">
+            <div class="card user-card-full">
+              <div class="row m-l-0 m-r-0">
+                <div class="col-sm-4 bg-c-lite-green user-profile">
+                  <div class="card-block text-center text-white">
+                    <div class="m-b-25">
+                      <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius"
+                        alt="User-Profile-Image">
+                    </div>
+                    <h6 class="f-w-600">{{userProfile.firstName}} {{userProfile.lastName}}</h6>
+                    <span >{{userProfile.username}}</span><br>
+                    <a [routerLink]="['/update-profile']">
+                      <i class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="card-block">
+                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Profile Information</h6>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Email</p>
+                        <h6 class="text-muted f-w-400">{{ userProfile.email}}</h6>
+                      </div>
+                      <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Date Of Birth</p>
+                        <h6 class="text-muted f-w-400">{{ userProfile.dateOfBirth | removeTime}}</h6>
+                      </div>
+                    </div>
+                    <div *ngIf="tracks;">
+                      <div *ngIf="tracks.length>=0;">
+                        <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Favorites</h6>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <p class="m-b-10 f-w-600">Recent</p>
+                            <h6 class="text-muted f-w-400">{{tracks[tracks.length-1].name}} -
+                              {{tracks[tracks.length-1].artists[0].name}}</h6>
+                          </div>
+                          <div class="col-sm-6">
+                            <p class="m-b-10 f-w-600">Total</p>
+                            <h6 class="text-muted f-w-400">{{ tracks.length}}</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-side-bar></app-side-bar>
+      <app-footer></app-footer>
+</aside>

@@ -1,0 +1,33 @@
+/* Style for the aside element */
+aside {
+    background-color: #272727; /* Adjust as needed */
+    /* Add padding as needed */
+}
+/* Style for the form container */
+.form-container {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100%; /* Adjust as needed */
+    background-color: #272727; /* Adjust as needed */
+    padding: 20px; /* Add padding as needed */
+    color: #272727;
+      /* Add box shadow as needed */
+}
+/* Style for the mat-card element */
+mat-card {
+    margin-top: 30px;
+    background-color: #272727;
+}
+/* Style for the save button */
+mat-card-actions button {
+    margin-right: 10px; /* Add margin as needed */
+    background-color: white;
+    color: black;
+}
+.mat-form-field input.mat-input {
+    color: white; /* Set input color to white */
+    background-color: black; /* Set input background color to black */
+    border: 1px solid white; /* Set input border color to white */
+}
